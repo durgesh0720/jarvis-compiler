@@ -1,4 +1,40 @@
-data/
-.piston_env
-node_modules
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+Pipfile
+Pipfile.lock
+
+# Django-specific files
+db.sqlite3
+db.sqlite3-journal
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+media/
+staticfiles/
+*.sqlite3
+
+# Environment variables and secrets
+.env
+*.env
+
+# Migrations (optional)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# VS Code and JetBrains IDEs
 .vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db

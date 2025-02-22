@@ -1,8 +1,0 @@
-[[services]]
-  internal_port = 2000
-  protocol = "tcp"
-
-[[services.ports]]
-  handlers = ["http"]
-  port = 80
-  internal_port = 2000
