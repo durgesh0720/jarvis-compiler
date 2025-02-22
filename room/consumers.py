@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
 from django.core.cache import cache
-from asgiref.sync import sync_to_async
 
 class VideoChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -15,7 +14,7 @@ class VideoChatConsumer(AsyncWebsocketConsumer):
             await self.close()
             return
         
-        room_members = cache.get(self.room_id)
+        room_members = cache.get(self.room_id, [])
         room_members.append(self.channel_name)
         cache.set(self.room_id, room_members, timeout=3600)
         
@@ -42,13 +41,16 @@ class VideoChatConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         data = json.loads(text_data)
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                "type": "send.sdp",
-                "message": data
-            }
-        )
+
+        # Ensure correct SDP type
+        if data.get("type") in ["offer", "answer", "candidate"]:
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    "type": "send_sdp",
+                    "message": data
+                }
+            )
 
     async def send_sdp(self, event):
         await self.send(text_data=json.dumps(event["message"]))
