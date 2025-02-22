@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-q1h4hk9ejarkop=if)os&bzfr$^20a$d$$c4n3+%-s49(ap1=8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["react-chat-app-durgesh0720s-projects.vercel.app","jarvis-compiler.onrender.com"]
+ALLOWED_HOSTS = ["video-omega-one.vercel.app","jarvis-compiler.onrender.com"]
 
 
 # Application definition
@@ -43,7 +43,7 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://react-chat-app-durgesh0720s-projects.vercel.app",
+    "https://video-omega-one.vercel.app",
     "https://jarvis-compiler.onrender.com"
 ]
 
